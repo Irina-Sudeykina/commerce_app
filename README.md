@@ -29,6 +29,39 @@
     - message - Сообщение<br>
 
 
+### Модель Product: ###
+name - наименование,<br>
+description - описание,<br>
+image - изображение,<br>
+category - категория,<br>
+price - цена за покупку,<br>
+created_at - дата создания,<br>
+updated_at - дата последнего изменения.<br>
+
+
+### Модель Category: ###
+name - наименование,<br>
+description - описание,<br>
+
+
+## Загрузка фикстуры: ###
+Способ 1: - загрузка из файла<br>
+Зайдите в Django shell и выполните:
+```
+Product.objects.all().delete()
+Category.objects.all().delete()
+```
+В терминале выполните:
+```
+python manage.py loaddata catalog_fixture.json --format json
+```
+Способ 2 - используя кастомные команды<br>
+В терминале выполните:
+```
+python manage.py add_products
+```
+
+
 ## Запуск сервера:
 В терминале выполните:
  ```

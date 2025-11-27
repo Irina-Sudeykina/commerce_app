@@ -1,0 +1,99 @@
+[
+{
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+        "name": "Векторная графика",
+        "description": "Логотипы, персонажи, иконки и многое многое другое"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+        "name": "Анимация",
+        "description": "Анимация логотипов, футажи, плашки и много другое для оживления ваших видео"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+        "name": "Фотокниги",
+        "description": "Сделаем классную фотокнигу из ваших фотографий"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+        "name": "Видео из фотографий",
+        "description": "Создадим потрясающее видер из ваших фотографий"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+        "name": "Логотип",
+        "description": "Сделаем эксклюзивный логотип для вашей компании или личного бренда",
+        "image": "",
+        "category": 1,
+        "price": 2500.0,
+        "created_at": "2025-11-24",
+        "updated_at": "2025-11-24"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "name": "Персонаж",
+        "description": "Создадим векторный персонаж под ваш запрос",
+        "image": "",
+        "category": 1,
+        "price": 5000.0,
+        "created_at": "2025-11-24",
+        "updated_at": "2025-11-24"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+        "name": "Анимация логотипа",
+        "description": "Сделаем красивую, качественную анимацию для вашего логотипа",
+        "image": "",
+        "category": 2,
+        "price": 3000.0,
+        "created_at": "2025-11-24",
+        "updated_at": "2025-11-24"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+        "name": "Фотокнига на 10 разворотов",
+        "description": "Оформим фото с вашего отпуска/праздника в чудесную книгу",
+        "image": "",
+        "category": 3,
+        "price": 2500.0,
+        "created_at": "2025-11-24",
+        "updated_at": "2025-11-24"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+        "name": "Видео из фотографий 30 сек",
+        "description": "Оформим фото с вашего отпуска/праздника в потрясающее видео",
+        "image": "",
+        "category": 4,
+        "price": 5500.0,
+        "created_at": "2025-11-24",
+        "updated_at": "2025-11-24"
+    }
+}
+]

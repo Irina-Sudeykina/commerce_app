@@ -7,11 +7,7 @@ class BlogPost(models.Model):
         blank=True, null=True, verbose_name="Содержимое", help_text="Введите содержимое поста"
     )
     image = models.ImageField(
-        upload_to="blogs/image", 
-        blank=True, 
-        null=True, 
-        verbose_name="Изображение", 
-        help_text="Загрузите изображение"
+        upload_to="blogs/image", blank=True, null=True, verbose_name="Изображение", help_text="Загрузите изображение"
     )
     created_at = models.DateField(
         blank=True, auto_now_add=True, verbose_name="Дата создания", help_text="Укажите дату создания"
@@ -20,9 +16,7 @@ class BlogPost(models.Model):
         default=True, verbose_name="Признак публикации", help_text="Укажите признак публикации"
     )
     views_count = models.PositiveIntegerField(
-        verbose_name="Количество просмотров", 
-        help_text="Укажите количество просмотров", 
-        default=0
+        verbose_name="Количество просмотров", help_text="Укажите количество просмотров", default=0
     )
 
     class Meta:

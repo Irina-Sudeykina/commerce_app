@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'catalog/base.html' %}
 {% load my_tags %}
 
 {% block header %}
@@ -15,12 +15,12 @@
       <img src="{{ product.image | media_filter }}" class="img-fluid rounded-start" alt="{{ product.name }}">
     </div>
     <div class="col-md-8">
-      <div class="card-body">
+      <div class="card-body ms-4">
         <h3 class="card-title mb-3">{{ product.name }}</h3>
         <p class="card-text">{{ product.description }}</p>
         <h5 class="card-text mb-3">Цена: {{ product.price }} руб.</h5>
         <div class="btn-group">
-            <a class="btn btn-outline-primary" href="{% url 'catalog:home' %}" role="button">Назад</a>
+            <a class="btn btn-outline-primary" href="{% url 'catalog:product_list' %}" role="button">Назад</a>
         </div>
       </div>
     </div>

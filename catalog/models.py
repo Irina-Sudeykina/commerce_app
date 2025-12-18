@@ -26,11 +26,11 @@ class Product(models.Model):
         blank=True, null=True, verbose_name="Описание продукта", help_text="Введите описание продукта"
     )
     image = models.ImageField(
-        upload_to="catalog/image", 
-        blank=True, 
-        null=True, 
-        verbose_name="Изображение продукта", 
-        help_text="Загрузите изображение продукта"
+        upload_to="catalog/image",
+        blank=True,
+        null=True,
+        verbose_name="Изображение продукта",
+        help_text="Загрузите изображение продукта",
     )
     category = models.ForeignKey(
         Category,
@@ -46,10 +46,10 @@ class Product(models.Model):
         blank=True, auto_now_add=True, verbose_name="Дата создания", help_text="Укажите дату создания"
     )
     updated_at = models.DateField(
-        blank=True, 
-        auto_now=True, 
-        verbose_name="Дата последнего изменения", 
-        help_text="Укажите дату последнего изменения"
+        blank=True,
+        auto_now=True,
+        verbose_name="Дата последнего изменения",
+        help_text="Укажите дату последнего изменения",
     )
 
     class Meta:

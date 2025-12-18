@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'catalog/base.html' %}
 {% load my_tags %}
 
 {% block header %}
@@ -10,11 +10,11 @@
 
 {% block content %}
 <div class="row text-center">
-    {% for product in products %}
+    {% for product in object_list %}
     <div class="col-3">
         <div class="card mb-4 box-shadow">
             <div class="card-header">
-                <h4 class="my-0 font-weight-normal">{{ product.name }}</h4>
+                <h4 class="my-0 font-weight-normal mb-2">{{ product.name }}</h4>
                 <img class="img-fluid" src="{{ product.image | media_filter }}">
             </div>
             <div class="card-body">

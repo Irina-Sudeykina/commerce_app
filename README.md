@@ -30,7 +30,7 @@
 ### Контроллер ProductUpdateView(UpdateView) ###
 Контроллер для рендера страницы редактирования товара
 
-### Контроллер ProductDeleteView(DeleteView ###
+### Контроллер ProductDeleteView(DeleteView) ###
 Контроллер для рендера страницы удаления товара
 
 ### Контроллер ContactsView(View) ###

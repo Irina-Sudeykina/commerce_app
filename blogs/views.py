@@ -1,8 +1,8 @@
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
-from blogs.models import BlogPost
 from blogs.forms import BlogPostForm
+from blogs.models import BlogPost
 
 
 class BlogPostListView(ListView):

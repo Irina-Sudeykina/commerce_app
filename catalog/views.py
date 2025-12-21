@@ -1,16 +1,38 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.views.generic import DetailView, ListView, View
+from django.views.generic import DetailView, ListView, View, CreateView, UpdateView, DeleteView
+from django.urls import reverse, reverse_lazy
 
 from catalog.models import Product
+from .forms import ProductForm
 
 
 class ProductListView(ListView):
     model = Product
 
 
-class ProducDetailView(DetailView):
+class ProductDetailView(DetailView):
     model = Product
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy("catalog:product_list")
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy("catalog:dogs_list")
+
+    def get_success_url(self):
+        return reverse("catalog:product_detail", args=[self.kwargs.get("pk")])
+
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    success_url = reverse_lazy("catalog:product_list")
 
 
 class ContactsView(View):

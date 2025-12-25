@@ -21,6 +21,8 @@
         <h5 class="card-text mb-3">Цена: {{ product.price }} руб.</h5>
         <div class="btn-group">
             <a class="btn btn-outline-primary" href="{% url 'catalog:product_list' %}" role="button">Назад</a>
+            <a class="btn btn-outline-primary" href="{% url 'catalog:product_update' object.pk %}" role="button">Редактировать</a>
+            <a class="btn btn-outline-danger" href="{% url 'catalog:product_delete' object.pk %}" role="button">Удалить</a>
         </div>
       </div>
     </div>

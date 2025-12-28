@@ -88,11 +88,11 @@ views_count - количество просмотров.<br>
 
 
 ### Модель CustomUser: ###
-Добавлены поля:
-email - email
-avatar - аватар
-phone_number - телефон
-country - страна
+Добавлены поля:<br>
+email - email,<br>
+avatar - аватар,<br>
+phone_number - телефон,<br>
+country - страна<br>
 
 
 ### Форма ProductForm: ###

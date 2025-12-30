@@ -1,9 +1,9 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView, View
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.exceptions import PermissionDenied
 
 from catalog.models import Product
 
@@ -41,17 +41,17 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         obj = super().get_object(queryset)
-        if obj.owner != self.request.user and not self.request.user.has_perm('catalog.can_unpublish_product'):
+        if obj.owner != self.request.user and not self.request.user.has_perm("catalog.can_unpublish_product"):
             raise PermissionDenied("Вы не владелец данного продукта и не можете его редактировать.")
         return obj
 
     def form_valid(self, form):
         product = form.save(commit=False)
-        
+
         # Проверяем, имеет ли пользователь разрешение изменять статус публикации
-        if 'is_publication' in form.changed_data and not self.request.user.has_perm('catalog.can_unpublish_product'):
+        if "is_publication" in form.changed_data and not self.request.user.has_perm("catalog.can_unpublish_product"):
             raise PermissionDenied("Вы не имеете прав менять статус публикации продукта.")
-            
+
         product.save()
         return super().form_valid(form)
 
@@ -67,7 +67,7 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
         перед удалением продукта.
         """
         obj = self.get_object()
-        if obj.owner != self.request.user and not self.request.user.has_perm('catalog.delete_product'):
+        if obj.owner != self.request.user and not self.request.user.has_perm("catalog.delete_product"):
             raise PermissionDenied("Только владельцы и модераторы могут удалить продукт.")
         return super().dispatch(request, *args, **kwargs)
 

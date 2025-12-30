@@ -3,7 +3,7 @@ from django.views.generic import CreateView, DeleteView, DetailView, ListView, U
 
 from blogs.forms import BlogPostForm
 from blogs.models import BlogPost
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 
 class BlogPostListView(ListView):
@@ -24,21 +24,24 @@ class BlogPostDetailView(DetailView):
         return self.object
 
 
-class BlogPostCreateView(LoginRequiredMixin, CreateView):
+class BlogPostCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = BlogPost
     form_class = BlogPostForm
     success_url = reverse_lazy("blogs:blogpost_list")
+    permission_required = "blogs.add_blogpost"
 
 
-class BlogPostUpdateView(LoginRequiredMixin, UpdateView):
+class BlogPostUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = BlogPost
     form_class = BlogPostForm
     success_url = reverse_lazy("blogs:blogpost_list")
+    permission_required = "blogs.change_blogpost"
 
     def get_success_url(self):
         return reverse("blogs:blogpost_detail", args=[self.kwargs.get("pk")])
 
 
-class BlogPostDeleteView(LoginRequiredMixin, DeleteView):
+class BlogPostDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = BlogPost
     success_url = reverse_lazy("blogs:blogpost_list")
+    permission_required = "blogs.delete_blogpost"

@@ -2,7 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView, View
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.core.exceptions import PermissionDenied
 
 from catalog.models import Product
 
@@ -26,15 +27,26 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
-    success_url = reverse_lazy("catalog:dogs_list")
+    success_url = reverse_lazy("catalog:product_list")
 
     def get_success_url(self):
         return reverse("catalog:product_detail", args=[self.kwargs.get("pk")])
 
+    def form_valid(self, form):
+        product = form.save(commit=False)
+        
+        # Проверяем, имеет ли пользователь разрешение изменять статус публикации
+        if 'is_publication' in form.changed_data and not self.request.user.has_perm('catalog.can_unpublish_product'):
+            raise PermissionDenied("Вы не имеете прав менять статус публикации продукта.")
+            
+        product.save()
+        return super().form_valid(form)
 
-class ProductDeleteView(LoginRequiredMixin, DeleteView):
+
+class ProductDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Product
     success_url = reverse_lazy("catalog:product_list")
+    permission_required = "catalog.delete_product"
 
 
 class ContactsView(View):

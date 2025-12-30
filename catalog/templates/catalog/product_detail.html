@@ -22,7 +22,9 @@
         <div class="btn-group">
             <a class="btn btn-outline-primary" href="{% url 'catalog:product_list' %}" role="button">Назад</a>
             <a class="btn btn-outline-primary" href="{% url 'catalog:product_update' object.pk %}" role="button">Редактировать</a>
+            {% if 'catalog.can_unpublish_product' in perms %}
             <a class="btn btn-outline-danger" href="{% url 'catalog:product_delete' object.pk %}" role="button">Удалить</a>
+            {% endif %}
         </div>
       </div>
     </div>

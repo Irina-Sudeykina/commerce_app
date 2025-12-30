@@ -51,11 +51,17 @@ class Product(models.Model):
         verbose_name="Дата последнего изменения",
         help_text="Укажите дату последнего изменения",
     )
+    is_publication = models.BooleanField(
+        verbose_name="Статус публикации", help_text="Укажите статус публикации", default=False
+    )
 
     class Meta:
         verbose_name = "Продкут"
         verbose_name_plural = "Продкуты"
         ordering = ["category", "name"]
+        permissions = [
+            ("can_unpublish_product", "Отмена публикации продукта"),
+        ]
 
     def __str__(self):
         return f"{self.category}: {self.name} - {self.price}"

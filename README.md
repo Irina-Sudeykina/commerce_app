@@ -71,6 +71,8 @@ category - категория,<br>
 price - цена за покупку,<br>
 created_at - дата создания,<br>
 updated_at - дата последнего изменения.<br>
+is_publication - статус публикации<br>
+owner - владелец<br>
 
 
 ### Модель Category: ###

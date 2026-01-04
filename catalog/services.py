@@ -5,7 +5,7 @@ from .models import Product, Category
 
 def get_products_from_cache():
     """
-        Получет данные по собакам из кеша, 
+        Получет данные по продуктам из кеша, 
         если кеш пуст, то получает данные из БД
     """
     if not CACHE_ENABLED:

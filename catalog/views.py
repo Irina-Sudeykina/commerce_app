@@ -7,10 +7,29 @@ from django.views.generic import CreateView, DeleteView, DetailView, ListView, U
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
 
-from catalog.models import Product
+from catalog.models import Product, Category
 
 from .forms import ProductForm
-from .services import get_products_from_cache
+from .services import get_products_from_cache, CategoryService
+
+
+class CategoryListView(ListView):
+    model = Category
+
+
+class CategoryDetailView(DetailView):
+    model = Category
+    template_name = "catalog/category_detail.html"
+    context_object_name = "category"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        category_id = self.object.id
+
+        context['products_list'] = CategoryService.category_products_list(category_id)
+        
+        return context
 
 
 class ProductListView(ListView):

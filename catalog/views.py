@@ -4,16 +4,23 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView, View
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 
 from catalog.models import Product
 
 from .forms import ProductForm
+from .services import get_products_from_cache
 
 
 class ProductListView(ListView):
     model = Product
 
+    def get_queryset(self):
+        return get_products_from_cache()
 
+
+@method_decorator(cache_page(60 * 2), name="dispatch")
 class ProductDetailView(DetailView):
     model = Product
 
